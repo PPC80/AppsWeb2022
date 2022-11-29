@@ -1,0 +1,19 @@
+.alto {
+    @media (min-width:992px) {
+        height: 100vh;
+    }
+
+}
+.abilities-stats {
+    display: flex;
+}
+
+.habilidades {
+    /* background-color: red; */
+    width: 50%;
+}
+
+.stats {
+    /* background-color: green; */
+    width: 50%;
+}
