@@ -1,0 +1,48 @@
+.titulo {
+    display: flex;
+    margin-top: 30px;
+    justify-content: center;
+}
+
+.form-tag {
+    margin-left: 500px;
+    margin-right: 500px;
+}
+
+.radio-btns {
+    display: flex;
+
+}
+
+.radio-btns div {
+    padding-right: 15px;
+}
+
+.radio-btns h6 {
+    padding-right: 15px;
+}
+
+.check-boxes {
+    display: flex;
+
+}
+
+.check-boxes div {
+    padding-right: 15px;
+}
+
+.check-boxes h6 {
+    padding-right: 15px;
+}
+
+.file-input {
+    margin-top: 10px;
+}
+
+.text-area {
+    margin-top: 15px;
+}
+
+.btn-enviar {
+    margin-top: 15px;
+}
