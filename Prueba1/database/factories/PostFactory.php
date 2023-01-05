@@ -1,13 +1,14 @@
 <?php
 
 namespace Database\Factories;
+
 use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Grade>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Post>
  */
-class GradeFactory extends Factory
+class PostFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,9 +18,11 @@ class GradeFactory extends Factory
     public function definition()
     {
         return [
-            'nombre'=>$name=$this->faker->name,
-            'slug'=>Str::slug($name),
-            'nota'=>$this->faker->numberBetween(0, 10),
+            //
+            'user_id'=>1,
+            'title'=>$title=$this->faker->sentence(),
+            'slug'=>Str::slug($title),
+            'body'=>$this->faker->text(2200),
         ];
     }
 }

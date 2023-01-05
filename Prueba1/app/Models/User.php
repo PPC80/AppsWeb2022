@@ -43,6 +43,6 @@ class User extends Authenticatable
     ];
 
     public function posts(){
-        return $this->hasOne(Grade::class);
+        return $this->hasMany(Post::class);
     }
 }

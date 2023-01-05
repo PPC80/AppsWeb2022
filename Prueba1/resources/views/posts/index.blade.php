@@ -1,8 +1,8 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Grades') }}
-            <a href="{{url('grades.create')}}">CREAR</a>
+            {{ __('Posts') }}
+            <a href="{{route('posts.create')}}">CREAR</a>
         </h2>
     </x-slot>
 
@@ -11,17 +11,20 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
 
-<table class="mb-4">
-                        @foreach($notas as $nota)
+                    <table class="mb-4">
+                        @foreach($posts as $post)
                         <tr class="border-b border-gray-200 text-sm">
-                            <td class="px-6 py-4"><a href="{{route('grades', $nota->slug)}}">
-                                {{$nota->nombre}}
+                            <td>
+                                <img src="/storage/{{$post->imagen}}" alt="imagen" width="50" height="50">
+                            </td>
+                            <td class="px-6 py-4"><a href="{{route('post', $post->slug)}}">
+                                {{$post->title}}
                                 </a></td>
                             <td class="px-6 py-4">
-                                <a href="{{route('notas.edit', $nota)}}" class="text-indigo-600">Editar</a>
+                                <a href="{{route('posts.edit', $post)}}" class="text-indigo-600">Editar</a>
                             </td>
                             <td class="px-6 py-4">
-                                <form action="{{route('notas.destroy',$nota)}}" method="POST">
+                                <form action="{{route('posts.destroy',$post)}}" method="POST">
                                     @csrf
                             	    @method('DELETE')
                                     <input
@@ -30,13 +33,13 @@
                                     class="bg-gray-800 text-white rounded px-4 py-2"
                                     onclick="return confirm('Esta seguro de que desea eliminar?')"
                                     >
-</form>
+                                </form>
                             </td>
                         </tr>
                         @endforeach
                     </table>
 
-                    {{ $notas->links() }}
+                    {{ $posts->links() }}
                 </div>
             </div>
         </div>

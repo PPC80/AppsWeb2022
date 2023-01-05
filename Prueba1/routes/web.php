@@ -2,8 +2,11 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PageController;
-use App\Http\Controllers\GradeController;
+use App\Http\Controllers\PostController;
+
 use Illuminate\Support\Facades\Route;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -30,12 +33,17 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::controller(PageController::class)->group (function (){
-    Route::get('/', 'home')->name('home');
-    Route::get('grades', 'lista')->name('lista');
-    Route::get('grades/{grade:slug}', 'grades')->name('grades');
-    Route::get('gra', 'editar')->name('editar');
-});
+Route::controller(PageController::class)->group ( function (){
+   Route::get('/','home')->name('home');
+   Route::get('blog','blog')->name('blog');
+   Route::get('blog/{post:slug}','post')->name('post');
+   Route::get('/search','search')->name('search');
+}) ;
 
-Route::resource('notas', GradeController::class)->except(['show'])->middleware(['auth']);
+//Route::resource('posts',PostController::class)->except('show');
+
+//para resolver el hecho de que nos da error en la ruta cuando no estamos logeados
+//de manera que cada que se quiera ir a esta ruta desde el URL se redireccione
+//al login
+Route::resource('posts', PostController::class)->except(['show'])->middleware(['auth']);
 require __DIR__.'/auth.php';
