@@ -57,4 +57,8 @@ class User extends Authenticatable
     public function videos(){
         return $this->hasMany('App\Models\Video');
     }
+
+    public function groups(){
+        return $this->belongsToMany('App\Models\Group')->withTimestamps();
+    }
 }

@@ -13,16 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('videos', function (Blueprint $table) {
-            $table->id();
-            $table->string('nombre');
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')
+        Schema::table('videos', function (Blueprint $table) {
+            $table->unsignedBigInteger('category_id');
+            $table->foreign('category_id')
                     ->references('id')
-                    ->on('users')
+                    ->on('categories')
                     ->onDelete('cascade')
                     ->onUpdate('cascade');
-            $table->timestamps();
         });
     }
 
@@ -33,6 +30,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('videos');
+        Schema::table('videos', function (Blueprint $table) {
+            //
+        });
     }
 };

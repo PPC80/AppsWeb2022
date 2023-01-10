@@ -13,7 +13,7 @@ class Profile extends Model
         return $this->belongsTo('App\Models\User');
     }
 
-    public function users(){
-        return $this->hasMany('App\Models\User');
-    }
+    // public function users(){
+    //     return $this->hasMany('App\Models\User');
+    // }
 }

@@ -13,10 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('videos', function (Blueprint $table) {
+        Schema::create('group_user', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre');
+            $table->unsignedBigInteger('group_id');
             $table->unsignedBigInteger('user_id');
+            $table->foreign('group_id')
+                    ->references('id')
+                    ->on('groups')
+                    ->onDelete('cascade')
+                    ->onUpdate('cascade');
             $table->foreign('user_id')
                     ->references('id')
                     ->on('users')
@@ -33,6 +38,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('videos');
+        Schema::dropIfExists('group_user');
     }
 };
