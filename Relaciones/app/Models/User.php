@@ -61,4 +61,8 @@ class User extends Authenticatable
     public function groups(){
         return $this->belongsToMany('App\Models\Group')->withTimestamps();
     }
+
+    public function image(){
+        return $this->morphOne(Image::class, 'imageable');
+    }
 }
