@@ -95,10 +95,6 @@ Route::controller(FacebookController::class)->group(function(){
     Route::get('auth/facebook/callback', 'handleFacebookCallback');
 });
 
-Route::get('/show-map', "\App\Http\Controllers\MapController@showMap" );
-
-Route::post('/save-marker', 'MarkerController@saveMarker');
-
-Route::get('/',[MarkerController::class, 'index']);
+Route::get('/show-map',[MarkerController::class, 'index']);
 Route::post('/store',[MarkerController::class, 'store'])->name('store');
 Route::get('/retrieve',[MarkerController::class, 'retrieve'])->name('retrieve');
