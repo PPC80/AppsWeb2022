@@ -58,7 +58,7 @@ Route::view('/home','pages.home') ->name('home');
  Route::view('/about','pages.about') ->name('about');
  //Route::view('/restaurants2','pages.restaurants') ->name('restaurants');
  Route::view('/search','pages.search') ->name('search');
- Route::view('/places', 'pages.places')->name('places');
+ //Route::view('/places', 'pages.places')->name('places');
 //  Route::view('/categories', 'pages.category')->name('categorias');
 //  Route::view('/foots', 'pages.platos')->name('platos');
 

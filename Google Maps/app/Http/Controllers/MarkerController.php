@@ -53,7 +53,7 @@ class MarkerController extends Controller
 
         $locations = DB::table('locations')->select('latitude', 'longitude')->get();
 
-        return view('retrieve-map', compact('locations'));
+        return view('pages.places', compact('locations'));
 
 
     }

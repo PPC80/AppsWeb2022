@@ -9,11 +9,11 @@
                     @switch(auth()->user()->type_user)
                         @case("Administrador")
                             <a href="{{route('search')}}" class="nav_link {{navActive('search')}}"> <i class='bx bx-search nav_icon'></i> <span class="nav_name">Buscar</span> </a>
-                            <a href="{{route('places')}}" class="nav_link {{navActive('places')}} "> <i class='bx bx-map nav_icon'></i> <span class="nav_name">Ubicaciones</span> </a>
+                            <a href="{{route('retrieve')}}" class="nav_link {{navActive('retrieve')}} "> <i class='bx bx-map nav_icon'></i> <span class="nav_name">Ubicaciones</span> </a>
                             @break
                         @case("Cliente")
                             <a  href="{{route('search')}}" class="nav_link {{navActive('search')}}"> <i class='bx bx-search nav_icon'></i> <span class="nav_name">Buscar</span> </a>
-                            <a href="{{route('places')}}" class="nav_link {{navActive('places')}}"> <i class='bx bx-map nav_icon'></i> <span class="nav_name">Ubicaciones</span> </a>
+                            <a href="{{route('retrieve')}}" class="nav_link {{navActive('retrieve')}}"> <i class='bx bx-map nav_icon'></i> <span class="nav_name">Ubicaciones</span> </a>
                             @break
                         @case("Afiliado")
                             <a href="{{route('categorias.index')}}" class="nav_link {{navActive('categorias.index')}}"> <i class='bx bx-grid-alt nav_icon'></i> <span class="nav_name">Categorias</span> </a>
@@ -26,7 +26,7 @@
                 <a href="{{route('about')}}" class="nav_link {{navActive('about')}}"> <i class='bx bx-info-circle nav_icon'></i> <span class="nav_name">Acerca de Nosotros</span> </a>
                 <a href="{{route('contact')}}" class="nav_link {{navActive('contact')}}"> <i class='bx bx-message-square-detail nav_icon'></i> <span class="nav_name">Contactos</span> </a>
         </div>
-        
+
         <div class="nav_list">
             <hr style="background-color: rgb(240, 248, 255)">
             @auth
@@ -37,6 +37,6 @@
             @endguest
         </div>
     </nav>
-    
+
 
 </div>
