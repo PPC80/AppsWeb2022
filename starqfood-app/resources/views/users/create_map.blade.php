@@ -23,7 +23,7 @@
             <form action="{{ route('store') }}" method="post">
                 @csrf
 
-                <select class="form-select" aria-label="Default select example" name="user_id_fk">
+                <select name="ruc" id="ruc" class="form-select" aria-label="Default select example" name="user_id_fk">
                     <option selected  value=>Seleccione Afiliado</option>
                     @foreach ($restaurants as $restaurant)
                       <option value={{$restaurant->ruc}}>{{$restaurant->local_name}}</option>
@@ -35,10 +35,10 @@
                 <div class="mapform" >
                     <div class="row">
                         <div class="col-5">
-                            <input type="text" class="form-control" placeholder="lat" name="lat" id="lat">
+                            <input type="hidden" class="form-control" placeholder="lat" name="lat" id="lat">
                         </div>
                         <div class="col-5">
-                            <input type="text" class="form-control" placeholder="lng" name="lng" id="lng">
+                            <input type="hidden" class="form-control" placeholder="lng" name="lng" id="lng">
                         </div>
                     </div>
 

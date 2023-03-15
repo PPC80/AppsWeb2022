@@ -19,12 +19,15 @@ class MarkerController extends Controller
 
     public function store(Request $request){
 
+        $restaurants = Restaurant::all();
+
         Location::create([
             'latitude'=>$request->lat,
-            'longitude'=>$request->lng
+            'longitude'=>$request->lng,
+            'ruc'=>$request->ruc
         ]);
 
-        return view('users.create_map');
+        return view('users.create_map', ['restaurants' => $restaurants ]);
     }
 
     public function retrieve(){

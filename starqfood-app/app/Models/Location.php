@@ -21,7 +21,8 @@ class Location extends Model
 
     protected $fillable = [
         'longitude',
-        'latitude'
+        'latitude',
+        'ruc'
     ];
 
     public function restaurant(){
