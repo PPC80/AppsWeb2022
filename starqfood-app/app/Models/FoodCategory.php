@@ -2,44 +2,20 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Food;
 
-/**
- * Class FoodCategory
- *
- * @property $category_id
- * @property $category
- * @property $brief
- *
- * @property Food[] $foods
- * @package App
- * @mixin \Illuminate\Database\Eloquent\Builder
- */
 class FoodCategory extends Model
 {
-    
-    static $rules = [
-		'category_id' => 'required',
-		'category' => 'required',
-    ];
+    use HasFactory;
+    public $timestamps = false;
+    protected $table ='food_categories';
+    protected $primaryKey='category_id';
+    protected $fillable=['category','brief'];
 
-    protected $perPage = 20;
-
-    /**
-     * Attributes that should be mass-assignable.
-     *
-     * @var array
-     */
-    protected $fillable = ['category_id','category','brief'];
-
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function foods()
+    public function food()
     {
-        return $this->hasMany('App\Models\Food', 'category_id_fk', 'category_id');
+        return $this->hasMany(Food::class, 'category_id_fk');
     }
-    
-
 }

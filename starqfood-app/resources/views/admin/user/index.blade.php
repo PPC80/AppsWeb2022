@@ -11,10 +11,14 @@
 @endphp
 
 <x-layouts.admin title='Usuarios'>
+    @if(session('success'))
+        <div class="container-fluid alert alert-success border-0 text-center text-light p-1 m-0 rounded-0 " style="background-color: #f1300e"> 
+            {{ session('success') }}
+        </div>
+    @endif
 
     <h1 class="p-2">Index Usuarios</h1>
     <div class="container card p-0">
-
         <div class="card-header text-light" style="background-color: #f1300e ">
             <div class="row align-items-center">
                 <div class="col-sm-9 text-center">
@@ -37,7 +41,7 @@
                 @endphp
                 <div class="accordion-item">
                     <h2 class="accordion-header" id="flush-heading{{ $id }}">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        <button class="accordion-button collapsed {{$claseOver}} " type="button" data-bs-toggle="collapse"
                             data-bs-target="#flush-collapse{{ $id }}" aria-expanded="false"
                             aria-controls="flush-collapse{{ $id }}">
                             <div class="container-fluid">

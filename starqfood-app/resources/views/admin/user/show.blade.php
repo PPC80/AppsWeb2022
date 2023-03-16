@@ -16,6 +16,11 @@
 @endphp
 
 <x-layouts.admin title={{$nameC}}>
+    @if(session('success'))
+    <div class="container-fluid alert alert-success text-center text-light p-1 m-0 rounded-0 border-0 " style="background-color: #f1300e">
+            {{ session('success') }}
+        </div>
+    @endif
 
     <div class="row m-0 mb-5 p-0 align-items-end  position-relative "
         style="background-image:url({{ $image[$id] }}); background-repeat:no-repeat;  
@@ -26,7 +31,7 @@
         <div class="col-12 position-absolute top-100 start-50 translate-middle text-center">
             <figure class=" figure rounded-circle bg-light border border-dark " style="width: 15vw; height:15vw">
                 <img class="figure-img img-fluid rounded-circle " src={{ $foto }} alt="Foto de Perfil"
-                    style="width: 14vw; heigth:14vw" id="image0">
+                    style="width: 15vw; heigth:15vw" id="image0">
             </figure>
         </div>
 

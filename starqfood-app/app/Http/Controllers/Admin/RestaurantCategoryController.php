@@ -8,15 +8,18 @@ use Illuminate\Http\Request;
 
 class RestaurantCategoryController extends Controller
 {
-    /**
+    
+ /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        $view=RestaurantCategory::all();
-        return response()->json(['data' => $view], 201);
+        $restaurantCategories = RestaurantCategory::paginate();
+
+        return view('admin.restaurant-category.index', compact('restaurantCategories'))
+            ->with('i', (request()->input('page', 1) - 1) * $restaurantCategories->perPage());
     }
 
     /**
@@ -26,62 +29,80 @@ class RestaurantCategoryController extends Controller
      */
     public function create()
     {
-        //
+        $restaurantCategory = new RestaurantCategory();
+        return view('admin.restaurant-category.create', compact('restaurantCategory'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        //
+        
+
+        $restaurantCategory = RestaurantCategory::create($request->all());
+
+        return redirect()->route('restaurant.index')
+            ->with('success', 'RestaurantCategory created successfully.');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function show($ruc)
+    public function show($id)
     {
-        //
+        $restaurantCategory = RestaurantCategory::find($id);
+
+        return view('admin.restaurant-category.show', compact('restaurantCategory'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        //
+        $restaurantCategory = RestaurantCategory::find($id);
+
+        return view('admin.restaurant-category.edit', compact('restaurantCategory'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  RestaurantCategory $restaurantCategory
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $category_id)
     {
-        //
+        $restaurantCategory = RestaurantCategory::find($category_id);
+        
+
+        $restaurantCategory->update($request->all());
+
+        return redirect()->route('restaurant.index')
+            ->with('success', 'RestaurantCategory updated successfully');
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param int $id
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Exception
      */
     public function destroy($id)
     {
-        //
+        $restaurantCategory = RestaurantCategory::find($id)->delete();
+
+        return redirect()->route('restaurant.index')
+            ->with('success', 'RestaurantCategory deleted successfully');
     }
 }

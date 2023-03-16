@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('local_name',40);
             $table->string('address',150);
             $table->string('local_email',40)->nullable();
-            $table->string('ower',30);
+            $table->string('owen',30);
             $table->string('local_tel',7)->nullable();
             $table->string('local_movil',10)->nullable();
             $table->string('description')->nullable();

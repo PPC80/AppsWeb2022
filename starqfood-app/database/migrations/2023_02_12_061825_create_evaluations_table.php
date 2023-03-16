@@ -17,7 +17,11 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id_fk');
             $table->unsignedBigInteger('ruc_fk');
-            $table->tinyInteger('score');
+            $table->tinyInteger('score1');
+            $table->tinyInteger('score2');
+            $table->tinyInteger('score3');
+            $table->tinyInteger('score4');
+            $table->tinyInteger('score5');
             $table->foreign('user_id_fk')
                 ->references('user_id')
                 ->on('users')

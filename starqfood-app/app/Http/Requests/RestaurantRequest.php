@@ -29,7 +29,7 @@ class RestaurantRequest extends FormRequest
             'local_name'=>'required|min:3|max:40',
             'address'=>'required|max:150',
             'local_email'=>'nullable|email|max:40',
-            'ower'=>'required|string|max:30|min:3',
+            'owen'=>'required|string|max:30|min:3',
             'local_tel'=>'nullable|string|min:7|max:9',
             'local_movil'=>'nullable|string|min:9|max:10',
             'description'=>'nullable|string',

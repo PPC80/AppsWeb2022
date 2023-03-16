@@ -8,15 +8,18 @@ use Illuminate\Http\Request;
 
 class FoodCategoryController extends Controller
 {
-    /**
+   /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        $view=FoodCategory::all();
-        return response()->json(['data' => $view], 201);
+        $foodCategories = FoodCategory::paginate();
+
+        return view('admin.food-category.index', compact('foodCategories'))
+            ->with('i', (request()->input('page', 1) - 1) * $foodCategories->perPage());
+            
     }
 
     /**
@@ -26,62 +29,78 @@ class FoodCategoryController extends Controller
      */
     public function create()
     {
-        //
+        $foodCategory = new FoodCategory();
+        return view('admin.food-category.create', compact('foodCategory'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        //
+        $foodCategory = FoodCategory::create($request->all());
+
+        return redirect()->route('food.index')
+            ->with('success', 'FoodCategory created successfully.');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($category_id)
     {
-        //
+        $foodCategory = FoodCategory::find($category_id);
+
+        return view('admin.food-category.show', compact('foodCategory'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        //
+        $foodCategory = FoodCategory::find($id);
+
+        return view('admin.food-category.edit', compact('foodCategory'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  FoodCategory $foodCategory
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
-        //
+        $foodCategory = FoodCategory::find($id);
+
+        $foodCategory -> update($request->all());
+
+        return redirect()->route('food.index')
+            ->with('success', 'FoodCategory updated successfully');
+        //return dump($foodCategory);
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param int $id
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Exception
      */
     public function destroy($id)
     {
-        //
+        $foodCategory = FoodCategory::find($id)->delete();
+
+        return redirect()->route('food.index')
+            ->with('success', 'FoodCategory deleted successfully');
     }
 }

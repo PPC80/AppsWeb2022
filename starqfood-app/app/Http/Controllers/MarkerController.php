@@ -13,8 +13,8 @@ class MarkerController extends Controller
     public function index(){
 
         $restaurants = Restaurant::all();
-        
-        return view('users.create_map', ['restaurants' => $restaurants ]);
+
+        return view('components.partials.gestionRestaurant', ['restaurants' => $restaurants ]);
     }
 
     public function store(Request $request){
@@ -27,15 +27,14 @@ class MarkerController extends Controller
             'ruc'=>$request->ruc
         ]);
 
-        return view('users.create_map', ['restaurants' => $restaurants ]);
+        return view('components.partials.gestionRestaurant', ['restaurants' => $restaurants ]);
     }
 
     public function retrieve(){
 
         $locations = DB::table('locations')->select('latitude', 'longitude')->get();
 
-        return view('users.ubicaciones', ['locations' => $locations ]);
-
+        return view('components.ubicaciones', ['locations' => $locations ]);
 
     }
 }

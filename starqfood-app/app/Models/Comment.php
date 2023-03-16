@@ -12,6 +12,7 @@ class Comment extends Model
     use HasFactory;
     protected $table='comments';
     protected $primaryKey='comment_id';
+    protected $fillable=['commentary','ruc_fk','user_id_fk'];
     
     public function user(){
 

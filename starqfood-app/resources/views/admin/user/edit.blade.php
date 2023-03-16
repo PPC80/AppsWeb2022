@@ -36,7 +36,7 @@
             <figure class=" figure rounded-circle bg-light border border-dark " style="width: 15vw; height:15vw;"
                 id="preview">
                 <img class="figure-img img-fluid rounded-circle " src={{ $foto }} alt="Foto de Perfil"
-                    style="width: 14vw; heigth:14vw;" id="image0">
+                    style="width: 15vw; heigth:15vw;" id="image0">
             </figure>
         </div>
 

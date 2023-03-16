@@ -1,14 +1,15 @@
 <?php
-
-use App\Http\Controllers\RestaurantCategoryController;
-use App\Http\Controllers\RestauranteController;
-
+use App\Http\Controllers\Admin\FoodCategoryController;
+use App\Http\Controllers\Admin\FoodController;
+use App\Http\Controllers\Admin\RestaurantCategoryController;
+use App\Http\Controllers\Admin\RestaurantController;
 use App\Http\Controllers\Admin\UserController;
-use App\Http\Controllers\FoodCategoryController;
-use App\Http\Controllers\FoodController;
-use App\Http\Controllers\MarkerController;
+use App\Http\Controllers\CalificacionesController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CommentController;
+use App\Http\Controllers\evaluations;
+use App\Http\Controllers\MarkerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,6 +39,15 @@ Route::middleware(['verified'])->get('home', function () {
             return view('home');
         }
 })->name('home');
+Route::middleware('auth.session')->group(function(){
+    Route::post('/comments', [CommentController::class,'store'])->name('comment.store');
+    Route::put('/comments/{comment}', [CommentController::class, 'update']);
+    Route::delete('/comments/{comment}', [CommentController::class, 'destroy']);
+    Route::get('/comments/{comment}', [CommentController::class, 'show']);
+    Route::post('mapa/store',[MarkerController::class, 'store'])->name('map.store');
+    Route::post('/calificaciones', [CalificacionesController::class, 'store'])->name('calificacion.store');
+
+});
 
 
 Route::prefix('admin')->middleware(['admin','verified'])->group(function(){
@@ -45,16 +55,17 @@ Route::prefix('admin')->middleware(['admin','verified'])->group(function(){
     Route::view('home','admin.home');
     Route::resource('users', UserController::class);
     Route::resource('category/restaurant',RestaurantCategoryController::class);
-    Route::resource('restaurants', RestauranteController::class);
+    Route::resource('restaurants',RestaurantController::class);
     Route::resource('category/food',FoodCategoryController::class);
-    Route::resource('food',FoodController::class);
+    Route::resource('restaurants/{ruc}/foods',FoodController::class);
+
     Route::get('/show-map',[MarkerController::class, 'index']);
-    Route::post('/store',[MarkerController::class, 'store'])->name('store');
+    // Route::post('/store',[MarkerController::class, 'store'])->name('store');
     Route::get('/retrieve',[MarkerController::class, 'retrieve'])->name('retrieve');
+
 });
 
-
-
+Route::resource('restaurants/evaluations',evaluations::class);
 
 Route::prefix('client')->middleware(['client','verified'])->group(function(){
     Route::view('home','client.home');
@@ -62,6 +73,10 @@ Route::prefix('client')->middleware(['client','verified'])->group(function(){
     //Route::resource('category/food',FoodCategoryController::class);
     //Route::resource('food',FoodController::class);
 
+});
+
+Route::get('/eval', function () {
+    return view('user.evaluacionRest');
 });
 
 

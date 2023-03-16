@@ -1,8 +1,11 @@
 <x-layouts.admin title='Restaurantes'>
+    @if(session('success'))
+    <div class="container-fluid alert alert-success border-0 text-center text-light p-1 m-0 rounded-0 " style="background-color: #f1300e"> 
+        {{ session('success') }}
+    </div>
+    @endif
     <h1>Resturantes</h1>
-    <p>{{ session('status') }}</p>
-    <hr>
-
+    
     <div class="container m-2 text-end">
         
         <a name="" id="" class="btn btn-dark" href="{{route('restaurants.create')}}" role="button">Crear Nuevo</a>
@@ -73,7 +76,7 @@
                         
                         
 
-                        <a name="" id="" class="btn btn-dark" href="restaurants/{{$restaurant->ruc}}/edit"  style="width: 130px "role="button">Editar</a>
+                        <a name="" id="" class="btn btn-dark" href={{route('restaurants.edit', ['restaurant'=>$restaurant->ruc])}}  style="width: 130px "role="button">Editar</a>
 
                         <form action="{{route('restaurants.destroy',$restaurant)}}" method="POST">
                             @csrf

@@ -18,8 +18,8 @@ return new class extends Migration
             $table->tinyInteger('category_id_fk',false,true);
             $table->string('food_name',40);
             $table->decimal('cost',5);
-            $table->string('time',2)->nullable();
-            $table->boolean('visibility');
+            $table->string('wait_time',3)->nullable();
+            $table->boolean('visibility')->default(1);
             $table->unsignedBigInteger('ruc_fk');
             $table->foreign('ruc_fk')
                 ->references('ruc')
@@ -30,7 +30,7 @@ return new class extends Migration
                 ->references('category_id')
                 ->on('food_categories')
                 ->onUpdate('cascade')
-                ->onDelete('cascade');   
+                ->onDelete('cascade');
         });
     }
 

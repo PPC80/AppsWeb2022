@@ -23,7 +23,7 @@ class RestaurantFactory extends Factory
             'local_name' =>fake()->company(),
             'address' =>fake()->address(),
             'local_email' => fake()->optional(80)->safeEmail(),
-            'ower' =>fake()->name(),
+            'owen' =>fake()->name(),
             'local_tel' =>fake()->optional(80)->numberBetween(2000000,4000000),
             'local_movil' =>fake()->optional(80)->isbn10(),
             'description' =>fake()->optional(40)->text($maxNbChars = 100),

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\RestaurantEditRequest;
 use App\Http\Requests\RestaurantRequest;
+use App\Models\FoodCategory;
 use Illuminate\Http\Request;
 use App\Models\Restaurant;
 use App\Models\RestaurantCategory;
@@ -36,69 +37,65 @@ class RestaurantController extends Controller
     public function store(RestaurantRequest $request)
     {
         $restaurant=Restaurant::create($request->validated());
-     
         $id=$restaurant->ruc;
-        $direction='StarQfoot/restaurants/Logos';
-        
-        if(isset($request->validated()['image']) && $request->validated()['image']){
-
-            $image = $request->file('image');  
-            //$extension = $image->getClientOriginalExtension();
-            //$newName=$id.'_logo.'.$extension;
-            $newName=$id.'_logo.';
-            $path = $request->file('image')->storeAS('public/'.$direction,$newName.$image->extension());
-            $logo = storage_path($path);
-            $obj = Cloudinary::upload($image->getRealPath(),['folder'=>$direction]);
-            $url = $obj -> getSecurePath();
-            $imagenID = $obj -> getPublicID();
-            $result = Storage::deleteDirectory($direction, true);
+        $image=$request->file('image');
+        if(isset($restaurant->image) && $request->validated()['image']){
+            $path=$image->getRealPath();
+            $cloudinary = Cloudinary::upload($path,[
+                'folder' => 'StarQfood/restaurants/image',
+            ]);
+            $url = $cloudinary-> getSecurePath();
+            $imagenID = $cloudinary -> getPublicID();
             $restaurant->image()->create(['url'=>$url,'direc_public'=>$imagenID]);
-             $result = Storage::deleteDirectory($direction, true);
         }
     
-         return view('admin.restaurant.show',['restaurant'=>Restaurant::findOrFail($id)]);
+         return redirect()->route('restaurants.show',$id);
+
     }
 
     public function show($ruc)
     {
-        $restaurant=Restaurant::findOrFail($ruc);
-
-        $image=$restaurant->image;
-
-        return view('admin.restaurant.show',['restaurant'=>Restaurant::findOrFail($ruc)]);
+        return view('admin.restaurant.show',['restaurant'=>Restaurant::findOrFail($ruc),'categories'=>FoodCategory::all()]);
     }
 
  
-    public function edit($id)
+    public function edit($ruc)
     {
-        //
+        $categories=RestaurantCategory::orderBy('category')->get();
+        $users=User::orderBy('user_id','desc')->whereNot('rol_id_fk',3)->get(['user_id','username','email','created_at']);
+        return view('admin.restaurant.edit',['restaurant'=>Restaurant::findOrFail($ruc),'users'=>$users, 'categories'=>$categories]);
     }
 
 
-    public function update(RestaurantEditRequest $request, Restaurant $restaurant)
+    public function update(RestaurantEditRequest $request, $ruc)
     {
-        
-        $restaurant->Restaurant::where('ruc', 1)->update($request->validated());
-        
-        $id=$restaurant->id;
-        $direction='StarQfoot/restaurants/Logos';
-        $restaurant->save();
-        if(isset($request['image'])){
-            $image = $request->file('image');
-            $obj = Cloudinary::upload($image->getRealPath(),['folder'=>$direction]);
-            $url = $obj -> getSecurePath();
-            $imagenID = $obj -> getPublicID();
-            if(isset($restaurant-> image->public_id))
-            {
-                Cloudinary::destroy($restaurant-> image->public_id);
-                $restaurant->image()->update(['url'=>$url,'public_id'=>$imagenID]);
+
+        $restaurant = Restaurant::findOrFail($ruc);
+        $restaurant->update($request->validated());
+        $image=$request->file('image');
+        if(isset($image)){
+            $path=$image->getRealPath();
+            if(isset($restaurant->image)){
+                $oldImage = Cloudinary::getImage($restaurant->image->direc_public);
+                Cloudinary::destroy($oldImage->getPublicId());
+                $cloudinary = Cloudinary::upload($path,[
+                    'folder' => 'StarQfood/restaurants'
+                ]);
+                $url = $cloudinary-> getSecurePath();
+                $imagenID = $cloudinary -> getPublicID();
+                $restaurant->image()->update(['url'=>$url,'direc_public'=>$imagenID]);
             }else{
-                $restaurant->image()->create(['url'=>$url,'public_id'=>$imagenID]);
+                $cloudinary = Cloudinary::upload($path,[
+                    'folder' => 'StarQfood/restaurants',
+                ]);
+                $url = $cloudinary-> getSecurePath();
+                $imagenID = $cloudinary -> getPublicID();
+                $restaurant->image()->create(['url'=>$url,'direc_public'=>$imagenID]);
             }
-        }
         
+        }
             
-        return redirect()->route('restaurants')->with('success','Se ha actualizado correctamente su información');
+        return redirect()->route('restaurants.index')->with('success','Se ha actualizado correctamente su información');
     }
 
     
@@ -110,6 +107,6 @@ class RestaurantController extends Controller
         }
         
         $restaurant->delete();
-        return to_route('restaurants')->with('success','Se ha eliminado correctamente su información');
+        return to_route('restaurants.index')->with('success','Se ha eliminado correctamente su información');
     }
 }
