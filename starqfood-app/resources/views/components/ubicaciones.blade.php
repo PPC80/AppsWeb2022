@@ -43,7 +43,6 @@
                                     scaledSize: new google.maps.Size(35, 35)
                                 },
                                 label: {
-                                    text: "Restaurante",
                                     color: "#FFFFFF"
                                 },
                                 title: "Comida"

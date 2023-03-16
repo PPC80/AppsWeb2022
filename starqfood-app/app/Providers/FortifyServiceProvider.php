@@ -37,18 +37,18 @@ class FortifyServiceProvider extends ServiceProvider
 
             return Limit::perMinute(5)->by($email.$request->ip());
         });
-        
+
         /**------------------------------------------------------------------------------
-         *                                View - fortify                             
+         *                                View - fortify
          * -----------------------------------------------------------------------------*/
 
-        
+
          Fortify::registerView(function () {
             return view('auth.register');
         });
 
         Fortify::loginView(function () {
-            return view('auth.login');
+            return view('user.login');
         });
 
 
@@ -72,6 +72,6 @@ class FortifyServiceProvider extends ServiceProvider
         Fortify::verifyEmailView(function(){
             return view('auth.verify');
         });
-        
+
     }
 }

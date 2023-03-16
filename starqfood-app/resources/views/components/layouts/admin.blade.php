@@ -25,6 +25,7 @@
 
 @endphp
 
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -71,9 +72,9 @@
                             <div class="dropdown p-0 ">
                                 <a class="d-flex dropdown-toggle justify-content-center align-items-center text-dark"
                                     role="button" id="sesionMenu" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <small class="me-3">{{ $nameAuth }}</small>
+                                    <small class="me-3">{{$nameAuth}}</small>
                                     <div class="header_img me-1">
-                                        <img src={{ $fotoPerfil }} alt="">
+                                        <img src={{$fotoPerfil}} alt="">
                                     </div>
                                 </a>
 

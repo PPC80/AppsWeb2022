@@ -156,16 +156,16 @@
                     <div class="mapform" >
                         <div class="row">
                             <div class="col-5">
-                                <input type="text" class="form-control" placeholder="lat" name="lat" id="lat">
+                                <input type="hidden" class="form-control" placeholder="lat" name="lat" id="lat">
                             </div>
                             <div class="col-5">
-                                <input type="text" class="form-control" placeholder="lng" name="lng" id="lng">
+                                <input type="hidden" class="form-control" placeholder="lng" name="lng" id="lng">
                             </div>
                         </div>
 
                         <div id="map" style="height:400px; width: 800px;" class="my-3"></div>
 
-                        <script>
+                        <script></script>
                             let map;
                             function initMap() {
                                 map = new google.maps.Map(document.getElementById("map"), {

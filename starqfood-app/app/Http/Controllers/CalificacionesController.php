@@ -9,17 +9,17 @@ class CalificacionesController extends Controller
 {
     public function store(Request $request)
     {
-        $score1 = $request->input('score1');
-        $score2 = $request->input('score2');
-        $score3 = $request->input('score3');
-        $score4 = $request->input('score4');
-        $score5 = $request->input('score5');
+        $score1 = $request->input('calificacion_atencion');
+        $score2 = $request->input('calificacion_comida');
+        $score3 = $request->input('calificacion_tiempo');
+        $score4 = $request->input('calificacion_platos');
+        $score5 = $request->input('calificacion_ambiente');
 
-        $score1 = intval($score1);
-        $score2 = intval($score2);
-        $score3 = intval($score3);
-        $score4 = intval($score4);
-        $score5 = intval($score5);
+        // $score1 = intval($score1);
+        // $score2 = intval($score2);
+        // $score3 = intval($score3);
+        // $score4 = intval($score4);
+        // $score5 = intval($score5);
 
         // $promedio = ($score1 + $score2 + $score3 + $score4 + $score5) / 5;
 
@@ -45,4 +45,9 @@ class CalificacionesController extends Controller
 
         return redirect('/eval');
     }
+    public function login()
+    {
+        return view('user.login');
+    }
+
 }

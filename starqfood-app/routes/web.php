@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\evaluations;
 use App\Http\Controllers\MarkerController;
+use App\Http\Controllers\LocationController;
+use App\Models\Restaurant;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,7 +38,7 @@ Route::middleware(['verified'])->get('home', function () {
             return redirect('client/home');
         }
         else{
-            return view('home');
+            return redirect('home');
         }
 })->name('home');
 Route::middleware('auth.session')->group(function(){
@@ -46,7 +48,7 @@ Route::middleware('auth.session')->group(function(){
     Route::get('/comments/{comment}', [CommentController::class, 'show']);
     Route::post('mapa/store',[MarkerController::class, 'store'])->name('map.store');
     Route::post('/calificaciones', [CalificacionesController::class, 'store'])->name('calificacion.store');
-
+    Route::resource('locations',LocationController::class);
 });
 
 
@@ -72,6 +74,16 @@ Route::prefix('client')->middleware(['client','verified'])->group(function(){
     // Route::resource('restaurants',RestaurantController::class);
     //Route::resource('category/food',FoodCategoryController::class);
     //Route::resource('food',FoodController::class);
+
+});
+
+Route::middleware(['user','verified'])->group(function(){
+    Route::view('home','user.home');
+    Route::get('restaurants', [RestaurantController::class,'index2'])->name('user.restaurant');
+    Route::get('restaurants/{ruc}', [RestaurantController::class,'show'])->name('user.restaurant.show');
+    Route::get('restaurants/{ruc}/evaluation', [RestaurantController::class,'show'])->name('user.restaurant.evaluation');
+    Route::post('restaurants/{ruc}/evaluation', [RestaurantController::class,'show'])->name('user.restaurant.evaluation');
+
 
 });
 

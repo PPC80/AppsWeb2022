@@ -102,8 +102,6 @@ body {
     }
 }
 /* fin btn return */
-
-
 .contenedor {
 	margin: 0 auto;
 	max-width: 1200px;
@@ -223,6 +221,43 @@ table td:last-child {
 	text-align: center;
 }
 
+/* boton enviar */
+.contenedor_btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+.button {
+    margin: 10px;
+    padding: 1.3em 6em;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    font-weight: 500;
+    color: #ffffff;
+    background-color: #23c483; /* #ffcc00, #9A6804 */
+    border: none;
+    border-radius: 0.5rem;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease 0s;
+    cursor: pointer;
+    outline: none;
+}
+
+.button:hover {
+    background-color: #f00909;
+    box-shadow: 0px 15px 20px rgba(218, 35, 62, 0.4);
+    color: #ffffff;
+    transform: translateY(-15px);
+}
+
+.button:active {
+    transform: translateY(-1px);
+}
+/* fin boton enviar */
+
 
 /* ventanas */
 .modal-container {
@@ -276,7 +311,7 @@ table td:last-child {
     outline: none;
 }
 
-.modal-content button {
+.modal-content .button {
     margin: 10px;
     padding: 1.3em 6em;
     border: none;

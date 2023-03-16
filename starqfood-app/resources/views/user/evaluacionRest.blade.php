@@ -19,7 +19,7 @@
         <span>Regresar</span>
     </a>
 
-    <div class="contenedor-formulario contenedor animated rotateInDownRight ">
+<div class="contenedor-formulario contenedor animated rotateInDownRight "></div>
         <div class="imagen-formulario">
         </div>
         <form class="formulario" action="#" method="post">
@@ -72,34 +72,58 @@
                             </div>
                         </td>
                     </tr>
+                    <tr>
+                        <td colspan="2">
+                            <div class="contenedor_btn">
+                                <button class="button" type="submit">Enviar</button>
+                            </div>
+                        </td>
+                    </tr>
                 </table>
             </div>
         </form>
     </div>
 
+<form clase="contenedor-from" method="POST" action="{{ route('calificacion.store') }}">
+    @csrf
     <div class="modal-container" id="modal">
         <div class="modal-content">
             <h2>Calidad de Atención</h2>
             <p>Califica la calidad de atención del restaurante.</p>
             <div class="container-star">
                 <div class="rating-container">
-                    <input type="radio" name="atencion" value="malo" id="atencion-malo">
+                    <input type="radio" name="atencion" value="5" id="atencion-malo">
                     <label for="atencion-malo"><i class="fas fa-star"></i></label>
-                    <input type="radio" name="atencion" value="regular" id="atencion-regular">
+                    <input type="radio" name="atencion" value="4" id="atencion-regular">
                     <label for="atencion-regular"><i class="fas fa-star"></i></label>
-                    <input type="radio" name="atencion" value="bueno" id="atencion-bueno">
+                    <input type="radio" name="atencion" value="3" id="atencion-bueno">
                     <label for="atencion-bueno"><i class="fas fa-star"></i></label>
-                    <input type="radio" name="atencion" value="buenisimo" id="atencion-buenisimo">
+                    <input type="radio" name="atencion" value="2" id="atencion-buenisimo">
                     <label for="atencion-buenisimo"><i class="fas fa-star"></i></label>
-                    <input type="radio" name="atencion" value="excelente" id="atencion-excelente">
+                    <input type="radio" name="atencion" value="1" id="atencion-excelente">
                     <label for="atencion-excelente"><i class="fas fa-star"></i></label>
                 </div>
             </div>
+            <input type="hidden" name="calificacion_atencion" id="calificacion-atencion" value="">
             <div class="close" id="close">
-                <button>Enviar</button>
+                <a href="#" class="button">Enviar</a>
             </div>
         </div>
     </div>
+
+    <script>
+        var ratingContainers = document.querySelectorAll('.rating-container');
+        for (var i = 0; i < ratingContainers.length; i++) {
+            var ratingInputs = ratingContainers[i].querySelectorAll('input[type="radio"]');
+            for (var j = 0; j < ratingInputs.length; j++) {
+            ratingInputs[j].addEventListener('click', function() {
+                var ratingValue = this.value;
+                document.getElementById('calificacion-atencion').value = ratingValue;
+            });
+            }
+        }
+    </script>
+
 
     <div class="modal-container" id="modalComida">
         <div class="modal-content">
@@ -107,23 +131,37 @@
             <p>Califica la calidad de comida del restaurante.</p>
             <div class="container-star">
                 <div class="rating-container">
-                    <input type="radio" name="comida" value="malo" id="comida-malo">
+                    <input type="radio" name="comida" value="5" id="comida-malo">
                     <label for="comida-malo"><i class="fas fa-star"></i></label>
-                    <input type="radio" name="comida" value="regular" id="comida-regular">
+                    <input type="radio" name="comida" value="4" id="comida-regular">
                     <label for="comida-regular"><i class="fas fa-star"></i></label>
-                    <input type="radio" name="comida" value="bueno" id="comida-bueno">
+                    <input type="radio" name="comida" value="3" id="comida-bueno">
                     <label for="comida-bueno"><i class="fas fa-star"></i></label>
-                    <input type="radio" name="comida" value="buenisimo" id="comida-buenisimo">
+                    <input type="radio" name="comida" value="2" id="comida-buenisimo">
                     <label for="comida-buenisimo"><i class="fas fa-star"></i></label>
-                    <input type="radio" name="comida" value="excelente" id="comida-excelente">
+                    <input type="radio" name="comida" value="1" id="comida-excelente">
                     <label for="comida-excelente"><i class="fas fa-star"></i></label>
                 </div>
             </div>
+            <input type="hidden" name="calificacion_comida" id="calificacion-comida" value="">
             <div class="close" id="closeC">
-                <button>Enviar</button>
+                <a href="#" class="button">Enviar</a>
             </div>
         </div>
     </div>
+
+    <script>
+        var ratingContainers = document.querySelectorAll('.rating-container');
+        for (var i = 0; i < ratingContainers.length; i++) {
+            var ratingInputs = ratingContainers[i].querySelectorAll('input[type="radio"]');
+            for (var j = 0; j < ratingInputs.length; j++) {
+            ratingInputs[j].addEventListener('click', function() {
+                var ratingValue = this.value;
+                document.getElementById('calificacion-comida').value = ratingValue;
+            });
+            }
+        }
+    </script>
 
     <div class="modal-container" id="modalTiempo">
         <div class="modal-content">
@@ -131,23 +169,37 @@
             <p>Califica el tiempo de preparación del restaurante.</p>
             <div class="container-star">
                 <div class="rating-container">
-                    <input type="radio" name="tiempo" value="malo" id="tiempo-malo">
+                    <input type="radio" name="tiempo" value="5" id="tiempo-malo">
                     <label for="tiempo-malo"><i class="fas fa-star"></i></label>
-                    <input type="radio" name="tiempo" value="regular" id="tiempo-regular">
+                    <input type="radio" name="tiempo" value="4" id="tiempo-regular">
                     <label for="tiempo-regular"><i class="fas fa-star"></i></label>
-                    <input type="radio" name="tiempo" value="bueno" id="tiempo-bueno">
+                    <input type="radio" name="tiempo" value="3" id="tiempo-bueno">
                     <label for="tiempo-bueno"><i class="fas fa-star"></i></label>
-                    <input type="radio" name="tiempo" value="buenisimo" id="tiempo-buenisimo">
+                    <input type="radio" name="tiempo" value="2" id="tiempo-buenisimo">
                     <label for="tiempo-buenisimo"><i class="fas fa-star"></i></label>
-                    <input type="radio" name="tiempo" value="excelente" id="tiempo-excelente">
+                    <input type="radio" name="tiempo" value="1" id="tiempo-excelente">
                     <label for="tiempo-excelente"><i class="fas fa-star"></i></label>
                 </div>
             </div>
+            <input type="hidden" name="calificacion_tiempo" id="calificacion-tiempo" value="">
             <div class="close" id="closeT">
-                <button>Enviar</button>
+                <a href="#" class="button">Enviar</a>
             </div>
         </div>
     </div>
+
+    <script>
+        var ratingContainers = document.querySelectorAll('.rating-container');
+        for (var i = 0; i < ratingContainers.length; i++) {
+            var ratingInputs = ratingContainers[i].querySelectorAll('input[type="radio"]');
+            for (var j = 0; j < ratingInputs.length; j++) {
+            ratingInputs[j].addEventListener('click', function() {
+                var ratingValue = this.value;
+                document.getElementById('calificacion-tiempo').value = ratingValue;
+            });
+            }
+        }
+    </script>
 
     <div class="modal-container" id="modalVariacion">
         <div class="modal-content">
@@ -155,23 +207,37 @@
             <p>Califica la variación de platos del restaurante.</p>
             <div class="container-star">
                 <div class="rating-container">
-                    <input type="radio" name="tiempo" value="malo" id="variacion-malo">
+                    <input type="radio" name="tiempo" value="5" id="variacion-malo">
                     <label for="variacion-malo"><i class="fas fa-star"></i></label>
-                    <input type="radio" name="tiempo" value="regular" id="variacion-regular">
+                    <input type="radio" name="tiempo" value="4" id="variacion-regular">
                     <label for="variacion-regular"><i class="fas fa-star"></i></label>
-                    <input type="radio" name="tiempo" value="bueno" id="variacion-bueno">
+                    <input type="radio" name="tiempo" value="3" id="variacion-bueno">
                     <label for="variacion-bueno"><i class="fas fa-star"></i></label>
-                    <input type="radio" name="tiempo" value="buenisimo" id="variacion-buenisimo">
+                    <input type="radio" name="tiempo" value="2" id="variacion-buenisimo">
                     <label for="variacion-buenisimo"><i class="fas fa-star"></i></label>
-                    <input type="radio" name="tiempo" value="excelente" id="variacion-excelente">
+                    <input type="radio" name="tiempo" value="1" id="variacion-excelente">
                     <label for="variacion-excelente"><i class="fas fa-star"></i></label>
                 </div>
             </div>
+            <input type="hidden" name="calificacion_platos" id="calificacion-platos" value="">
             <div class="close" id="closeV">
-                <button>Enviar</button>
+                <a href="#" class="button">Enviar</a>
             </div>
         </div>
     </div>
+
+    <script>
+        var ratingContainers = document.querySelectorAll('.rating-container');
+        for (var i = 0; i < ratingContainers.length; i++) {
+            var ratingInputs = ratingContainers[i].querySelectorAll('input[type="radio"]');
+            for (var j = 0; j < ratingInputs.length; j++) {
+            ratingInputs[j].addEventListener('click', function() {
+                var ratingValue = this.value;
+                document.getElementById('calificacion-platos').value = ratingValue;
+            });
+            }
+        }
+    </script>
 
 
     <div class="modal-container" id="modalAmbiente">
@@ -180,23 +246,39 @@
             <p>Califica el ambiente del restaurante.</p>
             <div class="container-star">
                 <div class="rating-container">
-                    <input type="radio" name="ambiente" value="malo" id="ambiente-malo">
+                    <input type="radio" name="ambiente" value="5" id="ambiente-malo">
                     <label for="ambiente-malo"><i class="fas fa-star"></i></label>
-                    <input type="radio" name="ambiente" value="regular" id="ambiente-regular">
+                    <input type="radio" name="ambiente" value="4" id="ambiente-regular">
                     <label for="ambiente-regular"><i class="fas fa-star"></i></label>
-                    <input type="radio" name="ambiente" value="bueno" id="ambiente-bueno">
+                    <input type="radio" name="ambiente" value="3" id="ambiente-bueno">
                     <label for="ambiente-bueno"><i class="fas fa-star"></i></label>
-                    <input type="radio" name="ambiente" value="buenisimo" id="ambiente-buenisimo">
+                    <input type="radio" name="ambiente" value="2" id="ambiente-buenisimo">
                     <label for="ambiente-buenisimo"><i class="fas fa-star"></i></label>
-                    <input type="radio" name="ambiente" value="excelente" id="ambiente-excelente">
+                    <input type="radio" name="ambiente" value="1" id="ambiente-excelente">
                     <label for="ambiente-excelente"><i class="fas fa-star"></i></label>
                 </div>
             </div>
+            <input type="hidden" name="calificacion_ambiente" id="calificacion-ambiente" value="">
             <div class="close" id="closeA">
-                <button>Enviar</button>
+                <a href="#" class="button">Enviar</a>
             </div>
         </div>
     </div>
+
+    <script>
+        var ratingContainers = document.querySelectorAll('.rating-container');
+        for (var i = 0; i < ratingContainers.length; i++) {
+            var ratingInputs = ratingContainers[i].querySelectorAll('input[type="radio"]');
+            for (var j = 0; j < ratingInputs.length; j++) {
+            ratingInputs[j].addEventListener('click', function() {
+                var ratingValue = this.value;
+                document.getElementById('calificacion-ambiente').value = ratingValue;
+            });
+            }
+        }
+    </script>
+</form>
+
     <script src='js/user_js/evaluacionesRest.js'></script>
 </body>
 </html>

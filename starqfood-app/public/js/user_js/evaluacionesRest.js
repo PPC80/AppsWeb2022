@@ -62,3 +62,34 @@ openAmbiente.onclick = function () {
 closeAmbiente.onclick = function () {
     modalA.style.visibility = "hidden";
 }
+
+//--------------------------------------------------------------------------
+var ratingContainers = document.querySelectorAll('.rating-container');
+for (var i = 0; i < ratingContainers.length; i++) {
+    var ratingInputs = ratingContainers[i].querySelectorAll('input[type="radio"]');
+    for (var j = 0; j < ratingInputs.length; j++) {
+    ratingInputs[j].addEventListener('click', function() {
+        var ratingValue = this.value;
+        document.getElementById('calificacion-atencion').value = ratingValue;
+    });
+    }
+}
+//--------------------------------------------------------------------------
+var ratingContainers = document.querySelectorAll('.rating-container');
+for (var i = 0; i < ratingContainers.length; i++) {
+    var ratingInputs = ratingContainers[i].querySelectorAll('input[type="radio"]');
+    for (var j = 0; j < ratingInputs.length; j++) {
+    ratingInputs[j].addEventListener('click', function() {
+        var ratingValue = this.value;
+        document.getElementById('calificacion-comida').value = ratingValue;
+    });
+    }
+}
+//--------------------------------------------------------------------------
+
+//--------------------------------------------------------------------------
+
+//--------------------------------------------------------------------------
+
+//--------------------------------------------------------------------------
+

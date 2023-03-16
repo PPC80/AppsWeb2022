@@ -1,10 +1,10 @@
 @php
     $home = '#';
     $vista_restaurantes = "{{route('user.restaurantes')}}"
-@endphp"
+@endphp
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -32,7 +32,7 @@
     </div>
     <div class="animated fadeIn">
         <div class="hero">
-            <a href={{$home}} class="logo">Star Q Food</a>
+            <a href="#" class="logo">Star Q Food</a>
             <div class="bx bx-menu" id="menu-icon" color="#d24242"></div>
             <div class="navbar-img">
                 <ul class="navbar">
@@ -76,7 +76,7 @@
             </div>
 
             <div class="home-img">
-                <img src="{{asset('image/user_img/home1.png')}}">
+                <img src="img/home1.png">
             </div>
         </section>
 

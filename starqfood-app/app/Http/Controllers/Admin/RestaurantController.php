@@ -16,15 +16,21 @@ use Illuminate\Support\Facades\Storage;
 
 class RestaurantController extends Controller
 {
-  
+
     public function index()
     {
         $restaurants=Restaurant::all();
         return view('admin.restaurant.index',['restaurants'=>$restaurants]);
 
     }
+    public function index2()
+    {
+        $restaurants=Restaurant::all();
+        return view('user.restaurantes',['restaurants'=>$restaurants]);
 
-  
+    }
+
+
     public function create()
     {
         $users=User::orderBy('user_id','desc')->whereNot('rol_id_fk',3)->get(['user_id','username','email','created_at']);
@@ -33,7 +39,7 @@ class RestaurantController extends Controller
 
     }
 
-    
+
     public function store(RestaurantRequest $request)
     {
         $restaurant=Restaurant::create($request->validated());
@@ -48,7 +54,7 @@ class RestaurantController extends Controller
             $imagenID = $cloudinary -> getPublicID();
             $restaurant->image()->create(['url'=>$url,'direc_public'=>$imagenID]);
         }
-    
+
          return redirect()->route('restaurants.show',$id);
 
     }
@@ -57,8 +63,13 @@ class RestaurantController extends Controller
     {
         return view('admin.restaurant.show',['restaurant'=>Restaurant::findOrFail($ruc),'categories'=>FoodCategory::all()]);
     }
+    public function show2($ruc)
+    {
+        return view('user.restaurant.show.',['restaurant'=>Restaurant::findOrFail($ruc),'categories'=>FoodCategory::all()]);
+    }
 
- 
+
+
     public function edit($ruc)
     {
         $categories=RestaurantCategory::orderBy('category')->get();
@@ -92,21 +103,23 @@ class RestaurantController extends Controller
                 $imagenID = $cloudinary -> getPublicID();
                 $restaurant->image()->create(['url'=>$url,'direc_public'=>$imagenID]);
             }
-        
+
         }
-            
+
         return redirect()->route('restaurants.index')->with('success','Se ha actualizado correctamente su información');
     }
 
-    
+
     public function destroy(Restaurant $restaurant)
     {
         if(isset($restaurant->image->direc_public)){
             $fotoID = $restaurant->image->direc_public;
             Cloudinary::destroy($fotoID);
         }
-        
+
         $restaurant->delete();
         return to_route('restaurants.index')->with('success','Se ha eliminado correctamente su información');
     }
+
+
 }

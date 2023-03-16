@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Restaurantes</title>
-    <link rel="stylesheet" href="./estilos/restaurantes.css">
+    <link rel="stylesheet" href={{URL::asset('css/admin/user_style/restaurantes.css')}}>
     <link rel="stylesheet" href="https://kit.fontawesome.com/4b8e039d18.css" crossorigin="anonymous">
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
@@ -211,7 +211,7 @@
             </section>
         </div>
     </div>
-    <script type="text/javascript" src="./scripts/restaurantes.js"></script>
+    <script src='js/user_js/restaurantes.js'></script>
     <!-- btn scroll -->
     <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
     <script src="./scripts/jquery.scrollUp.js"></script>
