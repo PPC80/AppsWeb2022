@@ -84,8 +84,9 @@
         </form>
     </div>
 
-<form clase="contenedor-from" method="POST" action="{{ route('calificacion.store') }}">
-    @csrf
+<!-- <form clase="contenedor-from" method="POST" action="{{ route('calificacion.store') }}"> -->
+    <!-- <form clase="contenedor-from" method="POST" action=""> -->
+    <!-- @csrf -->
     <div class="modal-container" id="modal">
         <div class="modal-content">
             <h2>Calidad de Atención</h2>
@@ -277,7 +278,7 @@
             }
         }
     </script>
-</form>
+<!-- </form> -->
 
     <script src='js/user_js/evaluacionesRest.js'></script>
 </body>

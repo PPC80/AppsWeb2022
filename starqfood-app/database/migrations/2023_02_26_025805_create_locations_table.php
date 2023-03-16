@@ -15,8 +15,8 @@ class CreateLocationsTable extends Migration
     {
         Schema::create('locations', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('ruc');
-            $table->foreign('ruc')
+            $table->unsignedBigInteger('ruc_fk');
+            $table->foreign('ruc_fk')
                 ->references('ruc')
                 ->on('restaurants')
                 ->onDelete('cascade')

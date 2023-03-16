@@ -106,7 +106,9 @@
                     <h2>Menú</h2>
                     <hr>
                     @foreach ($foodsCategories as $foods)
+                        @if (isset($food[0]))
                         <h3>{{$foods[0]->category->category}}</h3>
+                        @endif
                         <hr>
                         @foreach ($foods as $food2)
                             @if ($food2->visibility==1)

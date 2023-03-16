@@ -1,14 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ubicaciones</title>
-    <link rel="stylesheet" href="./estilos/ubicaciones.css">
-</head>
-<body>
+<x-layouts.admin title="Mapa">
     <a href="./restaurante.html" class="cta">
         <svg viewBox="0 0 13 10" height="15px" width="20px">
             <path d="M12,5 L2,5"></path>
@@ -27,6 +17,4 @@
             referrerpolicy="no-referrer-when-downgrade">
         </iframe>
     </div>
-
-</body>
-</html>
+</x-layouts.admin>

@@ -13,7 +13,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Indie+Flower&family=Poppins:wght@100;200;300;400;500;600;700;800;900&family=Sacramento&display=swap" rel="stylesheet">
     <link rel="icon" href="https://www.simplyhealth.co.uk/shcore/sh/furniture/images/svgs/top-nav-account-icon.svg">
-    <link rel="stylesheet" href={{URL::asset('css/admin/user_style/login.css')}}>
+    <link rel="stylesheet" href={{URL::asset('css/user_style/login.css')}}>
     <!-- ANIMATE CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
     <title>Login</title>
@@ -96,12 +96,12 @@
             <form method="POST" action="{{ route('login') }}">
                 @csrf
                 <h1>Iniciar sesión</h1>
-                <div class="social-container">
+                <!-- <div class="social-container">
                     <a href="https://es-la.facebook.com/" class="social"><i class="fab fa-facebook-f"></i></a>
                     <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
                     <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
                 </div>
-                <span>o usa tu cuenta</span>
+                <span>o usa tu cuenta</span> -->
                 <input type="email" name="email" placeholder="Correo" class=" @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
                 @error('email')
                     <span class="invalid-feedback" role="alert">

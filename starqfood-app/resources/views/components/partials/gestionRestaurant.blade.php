@@ -1,7 +1,10 @@
 @php
     $imagenPlato = URL::asset('image/logo.svg');
     $foods=$restaurant->foods;
-    $ruc=$foods[0]->ruc_fk;
+   
+    $ruc=$restaurant->ruc; 
+    
+    
     $foodsCategories=$foods->groupBy('category');
 
 @endphp
@@ -24,9 +27,12 @@
             aria-labelledby="nav-indexfood-tab">
             <hr>
             @foreach ($foodsCategories as $foods)
-
+    
+                @if (isset($foods[0]))
                <h3>{{$foods[0]->category->category}}</h3>
+               @endif
                <hr>
+               
                @foreach ($foods as $food)
 
                <div class="row align-items-center mt-2">
@@ -165,7 +171,7 @@
 
                         <div id="map" style="height:400px; width: 800px;" class="my-3"></div>
 
-                        <script></script>
+                        <script>
                             let map;
                             function initMap() {
                                 map = new google.maps.Map(document.getElementById("map"), {

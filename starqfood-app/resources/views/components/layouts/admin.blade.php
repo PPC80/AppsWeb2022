@@ -21,7 +21,7 @@
     $profileUrl = '/admin/users/'.Auth::user()->user_id;
     $editProfileUrl = '/admin/users/'.Auth::user()->user_id.'/edit';
     $mensajeUrl='#';
-    $starUrl='#';
+    $starUrl='/eval';
 
 @endphp
 
@@ -198,7 +198,7 @@
                                 </div>
                             </div>
                             {{-- --------------------------------------------------------- --}}
-                            <div class=" accordion-item p-0 m-0 mt-2 mb-1" style="background: #18181a">
+                            <!-- <div class=" accordion-item p-0 m-0 mt-2 mb-1" style="background: #18181a">
                                 <div class="accordion-header" id="flush-headingFood">
                                     <button class="nav_link2 d-flex accordion-button dack collapsed ps-3 pe-2 m-0 w-100" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFood" aria-expanded="false" aria-controls="flush-collapseFood" >
                                         <i class='bx bx-drink nav_icon ms-2 pe-2'></i><span class="nav_name">Alimentos</span>
@@ -215,7 +215,7 @@
                                     </div>
 
                                 </div>
-                            </div>
+                            </div> -->
 
                              {{-- --------------------------------------------------------- --}}
                              <div class=" accordion-item p-0 m-0 mt-2 mb-1" style="background: #18181a">
@@ -229,9 +229,9 @@
                                         <a href={{$mapaUrl}} class="nav_link2 m-0"> <i class='bx bx-map-alt nav_icon me-2'></i>
                                             <span class="nav_name">Mapa</span>
                                         </a>
-                                        <a href={{$vincularMapaUrl}} class="nav_link2 m-0"> <i class='bx bx-map-pin nav_icon me-2'></i>
+                                        <!-- <a href={{$vincularMapaUrl}} class="nav_link2 m-0"> <i class='bx bx-map-pin nav_icon me-2'></i>
                                             <span class="nav_name">Agregar Ubicaciones</span>
-                                        </a>
+                                        </a> -->
                                     </div>
 
                                 </div>
